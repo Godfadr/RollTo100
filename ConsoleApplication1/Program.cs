@@ -40,14 +40,14 @@ namespace ConsoleApplication1
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Player");
-            Console.WriteLine("Health" + health_);
+            Console.WriteLine("Health" + _health);
         }
-        private int Health = 50;
         public int xp = 0;
         public string Name { get; set; }
         public Player(string name)
         {
             Name = name;
+            _health = 20;
         }
         //public int exp;
         public int Turns
@@ -55,11 +55,12 @@ namespace ConsoleApplication1
             get;
             set;
         }
-        public int health_
+        public int Health;
+        public int _health
         {
             get
             {
-                return Health;
+                return _health;
             }
             set
             {
@@ -80,7 +81,7 @@ namespace ConsoleApplication1
         }
         public void Damage(int dmg)
         {
-            health_ -= dmg;
+            _health -= dmg;
         }
         //public void Damage_(Obstacles Boulder)
         //{
@@ -104,7 +105,8 @@ namespace ConsoleApplication1
     {
         static Dice d = new Dice();
         //static int turn = 0;
-        public static void Turn(Player player, int action)
+
+        public static void GameMode1(Player player, int action)
         {
             Console.WriteLine("It's " + player.Name + " turn.");
             Console.WriteLine("Choose action (1 - Roll the dice, 2 - Skip turn)");
@@ -114,18 +116,22 @@ namespace ConsoleApplication1
                 int diceNumber = d.DiceNumber;
                 Console.WriteLine(diceNumber.ToString());
                 if (d.DiceNumber >= 6 + player.Turns)
-                    player.health_ += 15;
+                    player._health += 15;
                 else if (d.DiceNumber <= 5 + player.Turns)
-                    player.health_ -= 10;
-                // Player1.Damage(10);
-                Console.WriteLine(player.Name + "'s health is " + player.health_);
+                    player._health -= 10;
+                Console.WriteLine(player.Name + "'s health is " + player._health);
                 Console.WriteLine(player.Name + "'s experience is " + player.xp);
                 player.xp += 5 + 5 * player.Turns;
                 player.Turns++;
             }
-            Console.WriteLine(player.Name + " health is " + player.health_);
+            Console.WriteLine(player.Name + " health is " + player._health);
             Console.WriteLine();
         }
+        public static void GameMode2(Player player)
+        {
+
+        }
+
         static void Main(string[] args)
         {
             //Console.WriteLine("There's a winner!");
