@@ -23,7 +23,6 @@ namespace WindowsFormsApplication1
             player2 = new Player("godfadr", 10, int.MaxValue);
         }
 
-
         public override void SkipTurn()
         {
             if (turn)
@@ -58,7 +57,7 @@ namespace WindowsFormsApplication1
             if (dicenumber > 685176)
             {
                 player._health -= 5;
-                player._xp += 10 + (int)(2 * player._turns);
+                player._xp = 10 + (int)(2 * player._turns);
             }
             else
             {

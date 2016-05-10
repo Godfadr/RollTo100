@@ -78,30 +78,56 @@ namespace WindowsFormsApplication1
             if (DiceNumber < 3)
             {
                 player._health -= ob.boulder1;
-                player._xp -= 15;
+                player._xp = -15;
             }
             else if (DiceNumber < 5)
-
+            {
                 player._health -= ob.boulder2;
+                player._xp = -10;
+            }
             else if (DiceNumber < 7)
+            {
                 player._health -= ob.boulder3;
+                player._xp = -7;
+            }
             else if (DiceNumber < 9)
+            {
                 player._health -= ob.boulder4;
+                player._xp = -4;
+            }
             else if (DiceNumber < 11)
+            {
                 player._health -= ob.boulder5;
+                player._xp = -1;
+            }
         }
         private void HealThePlayer(Player player, int DiceNumber)
         {
             if (DiceNumber > 18)
+            {
                 player._health += 20;
+                player._xp = 17;
+            }
             else if (DiceNumber > 16)
+            {
                 player._health += 8;
+                player._xp = 11;
+            }
             else if (DiceNumber > 14)
+            {
                 player._health += 6;
+                player._xp = 8;
+            }
             else if (DiceNumber > 12)
+            {
                 player._health += 4;
+                player._xp = 5;
+            }
             else if (DiceNumber > 10)
+            {
                 player._health += 2;
+                player._xp = 2;
+            }
         }
     }
 

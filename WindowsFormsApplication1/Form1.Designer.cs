@@ -214,7 +214,7 @@
             this.Controls.Add(this.p1XP);
             this.Controls.Add(this.RollDice);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "No, no, no!";
             this.ResumeLayout(false);
             this.PerformLayout();
 
