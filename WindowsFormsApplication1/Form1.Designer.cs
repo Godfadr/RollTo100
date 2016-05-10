@@ -42,6 +42,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.p1HP = new System.Windows.Forms.Label();
+            this.GameModeSelector = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // RollDice
@@ -69,7 +70,6 @@
             this.p1XP.Size = new System.Drawing.Size(36, 26);
             this.p1XP.TabIndex = 2;
             this.p1XP.Text = "__";
-            this.p1XP.Click += new System.EventHandler(this.p1XP_Click);
             // 
             // p2XP
             // 
@@ -80,7 +80,6 @@
             this.p2XP.Size = new System.Drawing.Size(36, 26);
             this.p2XP.TabIndex = 4;
             this.p2XP.Text = "__";
-            this.p2XP.Click += new System.EventHandler(this.p2XP_Click);
             // 
             // p2HP
             // 
@@ -91,7 +90,6 @@
             this.p2HP.Size = new System.Drawing.Size(36, 26);
             this.p2HP.TabIndex = 5;
             this.p2HP.Text = "__";
-            this.p2HP.Click += new System.EventHandler(this.p2HP_Click);
             // 
             // label1
             // 
@@ -144,7 +142,6 @@
             this.label6.Size = new System.Drawing.Size(42, 26);
             this.label6.TabIndex = 13;
             this.label6.Text = "XP";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label7
             // 
@@ -186,12 +183,23 @@
             this.p1HP.TabIndex = 3;
             this.p1HP.Text = "__";
             // 
+            // GameModeSelector
+            // 
+            this.GameModeSelector.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.GameModeSelector.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.GameModeSelector.FormattingEnabled = true;
+            this.GameModeSelector.Location = new System.Drawing.Point(51, 12);
+            this.GameModeSelector.Name = "GameModeSelector";
+            this.GameModeSelector.Size = new System.Drawing.Size(121, 21);
+            this.GameModeSelector.TabIndex = 17;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PowderBlue;
             this.ClientSize = new System.Drawing.Size(657, 414);
+            this.Controls.Add(this.GameModeSelector);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label7);
@@ -227,6 +235,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label p1HP;
+        private System.Windows.Forms.ComboBox GameModeSelector;
     }
 }
 

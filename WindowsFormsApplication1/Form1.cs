@@ -7,82 +7,57 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ConsoleApplication1;
 
 namespace WindowsFormsApplication1
 {
     public partial class Form1 : Form
     {
-        Player player1;
-        Player player2;
+        List<GameModeClass> gameModeList = new List<GameModeClass>();
+        public Dictionary<string,Label> LabelDic = new Dictionary<string, Label>();
+       
         public Form1()
         {
             InitializeComponent();
-            player1 = new Player("player1");
-            player2 = new Player("player2");
+            IEnumerable<GameModeClass> exporters = typeof(GameModeClass)
+                                                    .Assembly.GetTypes()
+                                                    .Where(t => t.IsSubclassOf(typeof(GameModeClass)) && !t.IsAbstract)
+                                                    .Select(t => (GameModeClass)Activator.CreateInstance(t));
+            gameModeList = exporters.ToList();
+
+
+            LabelDic.Add("Player1XP", p1XP);
+            LabelDic.Add("Player2XP", p2XP);
+            LabelDic.Add("Player1HP", p1HP);
+            LabelDic.Add("Player2HP", p2HP);
+            LabelDic.Add("turnLabel", turnLabel);
+            if (gameModeList.Count == 0)
+                throw new Exception("No gamemode were found. Please make one or don't delete the standard modes");
+            GameModeSelector.Text = gameModeList[0].Name;
+            
+            foreach (GameModeClass gmc in gameModeList)
+            {
+                GameModeSelector.Items.Add(gmc.Name);
+                gmc.Initialize();
+                gmc.labelDictionary = LabelDic;
+                gmc.player1.XPLabel = p1XP;
+                gmc.player1.HPLabel = p1HP;
+                gmc.player2.XPLabel = p2XP;
+                gmc.player2.HPLabel = p2HP;
+
+            }
+
         }
-        bool turn = true;
 
         private void Player1_Click(object sender, EventArgs e)
         {
-            if (turn)
-            {
-                ConsoleApplication1.Program.Turn(player1, 1);
-                turnLabel.Text = "Turn: " + player2.Name;
-                p1HP.Text = player1.health_.ToString();
-                p1XP.Text = player1.xp.ToString();
-                finished(player1.health_, player1.xp, player1);
-                turn = !turn;
-                return;
-            }
-            ConsoleApplication1.Program.Turn(player2, 1);
-            turnLabel.Text = "Turn: " + player1.Name;
-            p2HP.Text = player2.health_.ToString();
-            p2XP.Text = player2.xp.ToString();
-            finished(player2.health_, player2.xp, player2);
-            turn = !turn;
+            gameModeList.Where(t => t.Name == GameModeSelector.Text).First().Turn();
         }
 
         private void SkipTurn_Click(object sender, EventArgs e)
         {
-            if (turn)
-            {
-                ConsoleApplication1.Program.Turn(player1, 0);
-                turnLabel.Text = "Turn: " + player2.Name;
-                turn = !turn;
-                return;
-            }
-            ConsoleApplication1.Program.Turn(player2, 0);
-            turnLabel.Text = "Turn: " + player1.Name;
-            turn = !turn;
+            gameModeList.Where(t => t.Name == GameModeSelector.Text).First().SkipTurn();
         }
 
-        private void finished(int hp, int xp, Player player)
-        {
-            if (hp >= 100 || xp >= 100)
-            {
-                MessageBox.Show("     " + player.Name + " has won!");
-                this.Close();
-            }
-        }
-
-        private void p1XP_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void p2XP_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void p2HP_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
     }
+    
 }
