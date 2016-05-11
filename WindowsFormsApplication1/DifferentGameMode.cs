@@ -19,8 +19,8 @@ namespace WindowsFormsApplication1
 
         public override void Initialize()
         {
-            player1 = new Player("susch", 10, int.MaxValue);
-            player2 = new Player("godfadr", 10, int.MaxValue);
+            player1 = new Player("student", 10, int.MaxValue);
+            player2 = new Player("profesor", 10, int.MaxValue);
         }
 
         public override void SkipTurn()
@@ -45,9 +45,9 @@ namespace WindowsFormsApplication1
                 player._health += 10;
             player.HPLabel.Text = player._health.ToString();
             if (player.Name == player1.Name)
-                labelDictionary["turnLabel"].Text = player2.Name;
+                labelDictionary["turnLabel"].Text = "Turn: " + player2.Name;
             else
-                labelDictionary["turnLabel"].Text = player1.Name;
+                labelDictionary["turnLabel"].Text = "Turn: " + player1.Name;
             turn = !turn;
         }
 
@@ -79,18 +79,18 @@ namespace WindowsFormsApplication1
             player.XPLabel.Text = player._xp.ToString();
             player.HPLabel.Text = player._health.ToString();
             if(player.Name == player1.Name)
-                labelDictionary["turnLabel"].Text = player2.Name;
+                labelDictionary["turnLabel"].Text = "Turn: " + player2.Name;
             else
-                labelDictionary["turnLabel"].Text = player1.Name;
+                labelDictionary["turnLabel"].Text = "Turn: " + player1.Name;
             turn = !turn;
         }
 
         private void finished(Player player)
         {
             if (player._xp >= 100)
-                MessageBox.Show($"Player {player.Name} has won this fantastic game!");
+                MessageBox.Show("Player " + player.Name + " has won this fantastic game!");
             else if (player._xp < 0)
-                MessageBox.Show($"Player {player.Name} has lost this not so fantastic game! :(");
+                MessageBox.Show("Player " + player.Name + " has lost this not so fantastic game! :(");
         }
     }
 }
