@@ -29,15 +29,15 @@ namespace WindowsFormsApplication1
             {
                 int diceNumber = d.DiceNumber;
                 Console.WriteLine(diceNumber.ToString());
-                if (d.DiceNumber >= 6 + player._turns)
-                    player._health += 15;
-                else if (d.DiceNumber <= 5 + player._turns)
-                    player._health -= 10;
-            player._xp += 5 + 5 * player._turns;
-                player._turns++;
+                if (d.DiceNumber >= 6 + player.turns)
+                    player.health += 15;
+                else if (d.DiceNumber <= 5 + player.turns)
+                    player.health -= 10;
+            player.xp += 5 + 5 * player.turns;
+                player.turns++;
             }
-            labelDictionary[player.Name + "HP"].Text = player._health.ToString();
-            labelDictionary[player.Name + "XP"].Text = player._xp.ToString();
+            labelDictionary[player.Name + "HP"].Text = player.health.ToString();
+            labelDictionary[player.Name + "XP"].Text = player.xp.ToString();
 
         }
         public override void Turn()
@@ -47,13 +47,13 @@ namespace WindowsFormsApplication1
                 GameMode1(player1, 1);
                 
                 labelDictionary["turnLabel"].Text = "Turn: " + player1.Name;
-                finished(player1._health, player1._xp, player1);
+                finished(player1.health, player1.xp, player1);
                 turn = !turn;
                 return;
             }
             GameMode1(player2, 1);
             labelDictionary["turnLabel"].Text = "Turn: " + player2.Name;
-            finished(player2._health, player2._xp, player2);
+            finished(player2.health, player2.xp, player2);
             turn = !turn;
         }
 
@@ -61,6 +61,7 @@ namespace WindowsFormsApplication1
         {
             if (hp >= 100 || xp >= 100)
             {
+                RecordManager.SaveFile(new RecordSomethingIGuess(player.Name, player.turns), this.Name);
                 MessageBox.Show("Player " + player.Name + " has won!");
             }
         }

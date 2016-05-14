@@ -58,6 +58,11 @@ namespace WindowsFormsApplication1
             gameModeList.Where(t => t.Name == GameModeSelector.Text).First().SkipTurn();
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Record rec = new Record(GameModeSelector.Text);
+            rec.Show();
+        }
     }
     
 }

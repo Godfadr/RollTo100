@@ -41,9 +41,9 @@ namespace WindowsFormsApplication1
 
         private void NotTheGame(Player player)
         {
-            if (player._xp >= 0)
-                player._health += 10;
-            player.HPLabel.Text = player._health.ToString();
+            if (player.xp >= 0)
+                player.health += 10;
+            player.HPLabel.Text = player.health.ToString();
             if (player.Name == player1.Name)
                 labelDictionary["turnLabel"].Text = "Turn: " + player2.Name;
             else
@@ -56,29 +56,29 @@ namespace WindowsFormsApplication1
             int dicenumber = dice.DiceNumber;
             if (dicenumber > 685176)
             {
-                player._health -= 5;
-                player._xp = 10 + (int)(2 * player._turns);
+                player.health -= 5;
+                player.xp = 10 + (int)(2 * player.turns);
             }
             else
             {
-                int punishment = 5 + 5 * player._turns;
-                if (player._health >= punishment)
-                    player._health -= punishment;
+                int punishment = 5 + 5 * player.turns;
+                if (player.health >= punishment)
+                    player.health -= punishment;
                 else
                 {
-                    punishment -= player._health;
-                    player._health = 0;
-                    player._xp = -punishment;
+                    punishment -= player.health;
+                    player.health = 0;
+                    player.xp = -punishment;
                 }
             }
             finished(player);
-            if(player._xp >= 0)
-                player._health += 10;
-            player._turns++;
+            if (player.xp >= 0)
+                player.health += 10;
+            player.turns++;
             string i = player1.ToString();
-            player.XPLabel.Text = player._xp.ToString();
-            player.HPLabel.Text = player._health.ToString();
-            if(player.Name == player1.Name)
+            player.XPLabel.Text = player.xp.ToString();
+            player.HPLabel.Text = player.health.ToString();
+            if (player.Name == player1.Name)
                 labelDictionary["turnLabel"].Text = "Turn: " + player2.Name;
             else
                 labelDictionary["turnLabel"].Text = "Turn: " + player1.Name;
@@ -87,10 +87,15 @@ namespace WindowsFormsApplication1
 
         private void finished(Player player)
         {
-            if (player._xp >= 100)
+            if (player.xp >= 100)
+            {
+                RecordManager.SaveFile(new RecordSomethingIGuess(player.Name, player.turns),this.Name);
                 MessageBox.Show("Player " + player.Name + " has won this fantastic game!");
-            else if (player._xp < 0)
+            }
+            else if (player.xp < 0)
+            {
                 MessageBox.Show("Player " + player.Name + " has lost this not so fantastic game! :(");
+            }
         }
     }
 }
