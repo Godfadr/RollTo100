@@ -71,7 +71,8 @@
     <Compile Include="Record.Designer.cs">
       <DependentUpon>Record.cs</DependentUpon>
     </Compile>
-    <Compile Include="RecordManager.cs" />
+    <Compile Include="DataBaseManager.cs" />
+    <Compile Include="SaveFileManager.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

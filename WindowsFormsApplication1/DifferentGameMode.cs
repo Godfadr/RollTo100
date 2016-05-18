@@ -89,7 +89,8 @@ namespace WindowsFormsApplication1
         {
             if (player.xp >= 100)
             {
-                RecordManager.SaveFile(new RecordSomethingIGuess(player.Name, player.turns),this.Name);
+                SaveFileManager.Save(player.Name, player.turns, this.Name);
+                //DataBaseManager.SaveFile(new RecordSomethingIGuess(player.Name, player.turns),this.Name);
                 MessageBox.Show("Player " + player.Name + " has won this fantastic game!");
             }
             else if (player.xp < 0)

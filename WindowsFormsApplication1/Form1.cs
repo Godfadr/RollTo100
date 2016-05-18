@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,7 @@ namespace WindowsFormsApplication1
         public Form1()
         {
             InitializeComponent();
+          
             IEnumerable<GameModeClass> exporters = typeof(GameModeClass)
                                                     .Assembly.GetTypes()
                                                     .Where(t => t.IsSubclassOf(typeof(GameModeClass)) && !t.IsAbstract)

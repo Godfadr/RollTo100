@@ -21,14 +21,15 @@ namespace WindowsFormsApplication1
 
         private void Record_Load(object sender, EventArgs e)
         {
-            List<RecordSomethingIGuess> iguess = RecordManager.LoadFile(_gamemode);
-            foreach (RecordSomethingIGuess item in iguess)
+            List<RecordSave> rs = SaveFileManager.LoadAll(_gamemode);
+            //List<RecordSomethingIGuess> iguess = RecordManager.LoadFile(_gamemode);
+            foreach (RecordSave item in rs)
             {
                 object[] obj = new object[3];
                 obj[0] = item.Name;
                 obj[1] = item.Turns;
                 obj[2] = item.RecordTime.ToLongTimeString() + " - " + item.RecordTime.ToLongDateString();
-                dataGridView1.Rows.Add(obj);
+              dataGridView1.Rows.Add(obj);
             }
         }
     }

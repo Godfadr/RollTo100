@@ -9,7 +9,7 @@ using LiteDB;
 
 namespace WindowsFormsApplication1
 {
-    static class RecordManager
+    static class DataBaseManager
     {
         public static List<RecordSomethingIGuess> LoadFile(string DataBaseName)
         {
